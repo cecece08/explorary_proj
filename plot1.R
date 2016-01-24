@@ -1,0 +1,10 @@
+Sys.setlocale("LC_TIME","English")
+dat<-read.table("./household_power_consumption.txt",sep=";",header=TRUE)
+a<-subset(dat,dat$Date=="1/2/2007" | dat$Date=="2/2/2007")
+Gap<-as.numeric(paste(a$Global_active_power))
+
+png(file="plot1.png",width=480,height=480)
+hist(Gap,col="red",breaks=seq(0,8,by=0.5),ylim=c(0,1200),xlab="Global Active Power (kilowatts)",ylab="Frequency",main="Global Active Power",axes=F)
+axis(side=1,at=seq(0,6,by=2),labels=seq(0,6,by=2))
+axis(side=2,at=seq(0,1200,by=200),labels=seq(0,1200,by=200))
+dev.off()
