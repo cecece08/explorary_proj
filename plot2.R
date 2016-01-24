@@ -1,0 +1,10 @@
+Sys.setlocale("LC_TIME","English")
+dat<-read.table("./household_power_consumption.txt",sep=";",header=TRUE)
+a<-subset(dat,dat$Date=="1/2/2007" | dat$Date=="2/2/2007")
+Gap<-as.numeric(paste(a$Global_active_power))
+Time<-paste(as.character(a$Date),a$Time)
+y<-strptime(Time,"%d/%m/%Y %H:%M:%S")
+
+png(file="plot2.png",width=480,height=480)
+plot(y,Gap,ylab="Global Active Power (kilowatts)",type="l",xlab="")
+dev.off()
